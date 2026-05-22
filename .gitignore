@@ -1,3 +1,6 @@
 secret.key
 nimcache/
 .aider*
+
+# ai stuff
+.openclaude/
