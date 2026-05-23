@@ -42,6 +42,41 @@ proc onCommand*(b: TeleBot, command: string, cb: CommandCallback) =
   if not b.commandCallbacks.hasKey(command):
     b.commandCallbacks[command] = @[]
   b.commandCallbacks[command].add(cb)
+  
+proc onHear*(b: TeleBot, pattern: string, cb: CommandCallback) =
+  ## Registers a callback triggered when a message exactly matches `pattern`.
+  ##
+  ## Unlike `onCommand`, this matches plain message text (not slash commands),
+  ## making it ideal for keyboard button labels, emoji phrases, or any
+  ## exact-text trigger.
+  ##
+  ## Parameters:
+  ##   - `b`:       The `TeleBot` instance to register the callback for.
+  ##   - `pattern`: The exact message text to match, after stripping whitespace.
+  ##                Any UTF-8 string is valid (e.g., "👥 Refer", "Hello").
+  ##   - `cb`:      The callback invoked on a match.
+  ##                Signature: `proc(bot: TeleBot, cmd: Command): Future[bool]`
+  ##
+  ## The `Command` object passed to the callback has:
+  ##   - `command` = the matched pattern
+  ##   - `message` = the original `Message`
+  ##   - `params`  = `""` (exact match carries no parameters)
+  ##
+  ## Returning `true` from the callback stops further callback processing;
+  ## `false` continues to the next registered callback.
+  ##
+  ## Example:
+  ## ```nim
+  ## bot.onHear("👥 Refer") proc(bot: TeleBot, cmd: Command): Future[bool] {.async.} =
+  ##   await bot.sendMessage(cmd.message.chat.id, "Here is your referral link!")
+  ##   return false
+  ## ```
+  ##
+  ## Note: For slash commands like `/start`, use `onCommand` instead.
+  b.updateCallbacks.add proc(bot: TeleBot, update: Update): Future[bool] {.async.} =
+    if update.message != nil and update.message.text.strip() == pattern:
+      var cmd = Command(command: pattern, message: update.message, params: "")
+      result = await cb(bot, cmd)
 
 proc onUnknownCommand*(b: TeleBot, cb: CatchallCommandCallback) =
   ## Registers a callback to handle unknown commands.
