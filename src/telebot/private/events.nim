@@ -1,4 +1,4 @@
-import tables
+import tables, asyncdispatch, strutils
 from types import TeleBot, UpdateCallback, CommandCallback, CatchallCommandCallback, InlineQueryCallback
 
 proc onUpdate*(b: TeleBot, cb: UpdateCallback) =

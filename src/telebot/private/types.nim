@@ -427,6 +427,9 @@ type
 
   KeyboardButton* = ref object of TelegramObject
     text*: string
+    iconCustomEmojiId*: string
+    style*: string
+    requestManagedBot*: KeyboardButtonRequestManagedBot
     requestUsers*: KeyboardButtonRequestUsers
     requestChat*: KeyboardButtonRequestChat
     requestContact*: bool
@@ -436,6 +439,8 @@ type
 
   InlineKeyboardButton* = ref object of TelegramObject
     text*: string
+    iconCustomEmojiId*: string
+    style*: string
     url*: string
     loginUrl*: LoginUrl
     callbackData*: string
@@ -485,6 +490,11 @@ type
     requestTitle*: bool
     requestUsername*: bool
     requestPhoto*: bool
+    
+  KeyboardButtonRequestManagedBot* = ref object of TelegramObject
+    requestId*: int
+    suggestedName*: string
+    suggestedUsername*: string
 
   KeyboardButtonPollType* = ref object of TelegramObject
     kind*: string
