@@ -3,9 +3,22 @@ import types
 from tables import hasKey, `[]`
 from keyboard import `$`
 
-proc sendMessage*(b: TeleBot, chatId: ChatId, text: string, messageEffectId = 0, businessConnectionId = 0, messageThreadId = 0, parseMode = "", entities: seq[MessageEntity] = @[],
-                  linkPreviewOptions: LinkPreviewOptions = nil, disableNotification = false, protectContent = false, replyParameters: ReplyParameters = nil,
-                  allowPaidBroadcast = false, replyMarkup: KeyboardMarkup = nil): Future[Message] {.api, async.}
+proc sendMessage*(
+    b: TeleBot, 
+    chatId: ChatId, 
+    text: string, 
+    messageEffectId = 0, 
+    businessConnectionId = 0, 
+    messageThreadId = 0, 
+    parseMode = "", 
+    entities: seq[MessageEntity] = @[],
+    linkPreviewOptions: LinkPreviewOptions = nil, 
+    disableNotification = false, 
+    protectContent = false, 
+    replyParameters: ReplyParameters = nil,
+    allowPaidBroadcast = false, 
+    replyMarkup: KeyboardMarkup = nil
+  ): Future[Message] {.api, async.}
 
 proc sendPhoto*(b: TeleBot, chatId: ChatId, photo: InputFileOrString, messageEffectId = 0, businessConnectionId = 0, messageThreadId = 0, caption = "", parseMode = "",
                 captionEntities: seq[MessageEntity] = @[], showCaptionAboveMedia = false, hasSpoiler = false, disableNotification = false, protectContent = false,

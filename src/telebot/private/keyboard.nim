@@ -2,7 +2,7 @@ import types, strutils, utils
 
 proc newKeyBoardButton*(
     text: string, 
-    iconCustomEmojiId = "", 
+    icon_custom_emoji_id = "", 
     style = "", 
     requestChat: KeyboardButtonRequestChat = nil, 
     requestContact = false, 
@@ -13,7 +13,7 @@ proc newKeyBoardButton*(
   
   new(result)
   result.text = text
-  if iconCustomEmojiId.len != 0: result.iconCustomEmojiId = iconCustomEmojiId
+  if icon_custom_emoji_id.len != 0: result.icon_custom_emoji_id = icon_custom_emoji_id
   if style.len != 0: result.style = style
   if requestChat != nil: result.requestChat = requestChat
   if requestContact: result.requestContact = true
