@@ -1,6 +1,16 @@
 import types, strutils, utils
 
-proc newKeyBoardButton*(text: string, iconCustomEmojiId = "", style = "", requestChat: KeyboardButtonRequestChat = nil, requestContact = false, requestLocation = false, requestPoll: KeyboardButtonPollType = nil, webApp: WebAppInfo = nil): KeyboardButton =
+proc newKeyBoardButton*(
+    text: string, 
+    iconCustomEmojiId = "", 
+    style = "", 
+    requestChat: KeyboardButtonRequestChat = nil, 
+    requestContact = false, 
+    requestLocation = false, 
+    requestPoll: KeyboardButtonPollType = nil, 
+    webApp: WebAppInfo = nil
+  ): KeyboardButton =
+  
   new(result)
   result.text = text
   if iconCustomEmojiId.len != 0: result.iconCustomEmojiId = iconCustomEmojiId
@@ -11,7 +21,15 @@ proc newKeyBoardButton*(text: string, iconCustomEmojiId = "", style = "", reques
   if requestPoll != nil: result.requestPoll = requestPoll
   if webApp != nil: result.webApp = webApp
 
-proc newReplyKeyboardMarkup*(keyboards: varargs[seq[KeyboardButton]], isPersistent = false, resizeKeyboard = false, oneTimeKeyboard = false, inputFieldPlaceholder = "", selective = false): ReplyKeyboardMarkup =
+proc newReplyKeyboardMarkup*(
+    keyboards: varargs[seq[KeyboardButton]], 
+    isPersistent = false, 
+    resizeKeyboard = false, 
+    oneTimeKeyboard = false, 
+    inputFieldPlaceholder = "", 
+    selective = false
+  ): ReplyKeyboardMarkup =
+  
   new(result)
   result.kind = kReplyKeyboardMarkup
   for keyboard in keyboards:
@@ -22,15 +40,33 @@ proc newReplyKeyboardMarkup*(keyboards: varargs[seq[KeyboardButton]], isPersiste
   if inputFieldPlaceholder.len != 0: result.inputFieldPlaceholder = inputFieldPlaceholder
   if selective: result.selective = true
 
-proc newInlineKeyBoardButton*(text: string, url = "", loginUrl: LoginUrl = nil, callbackData = "", webApp: WebAppInfo = nil, switchInlineQuery = "", switchInlineQueryCurrentChat = "", callbackGame: CallbackGame = nil, pay = false): InlineKeyboardButton =
+proc newInlineKeyBoardButton*(
+    text: string, 
+    iconCustomEmojiId = "", 
+    style = "", url = "", 
+    loginUrl: LoginUrl = nil, 
+    callbackData = "", 
+    webApp: WebAppInfo = nil, 
+    switchInlineQuery = "", 
+    switchInlineQueryCurrentChat = "", 
+    switchInlineQueryChosenChat: SwitchInlineQueryChosenChat = nil, 
+    copyText: CopyTextButton = nil, 
+    callbackGame: CallbackGame = nil, 
+    pay = false
+  ): InlineKeyboardButton =
+  
   new(result)
   result.text = text
+  if iconCustomEmojiId.len != 0: result.iconCustomEmojiId = iconCustomEmojiId
+  if style.len != 0: result.style = style
   if url.len != 0: result.url = url
   if loginUrl  != nil: result.loginUrl = loginUrl
   if callbackData.len != 0: result.callbackData = callbackData
   if webApp != nil: result.webApp = webApp
   if switchInlineQuery.len != 0: result.switchInlineQuery = switchInlineQuery
   if switchInlineQueryCurrentChat.len != 0: result.switchInlineQueryCurrentChat = switchInlineQueryCurrentChat
+  if switchInlineQueryChosenChat != nil: result.switchInlineQueryChosenChat = switchInlineQueryChosenChat
+  if copyText != nil: result.copyText = copyText
   if callbackGame != nil: result.callbackGame = callbackGame
   if pay: result.pay = pay
 
