@@ -1,5 +1,5 @@
 import tables, asyncdispatch, strutils
-from types import TeleBot, UpdateCallback, CommandCallback, CatchallCommandCallback, InlineQueryCallback
+from types import TeleBot, UpdateCallback, CommandCallback, CatchallCommandCallback, InlineQueryCallback, Update, Command
 
 proc onUpdate*(b: TeleBot, cb: UpdateCallback) =
   ## Registers a callback to handle general updates.

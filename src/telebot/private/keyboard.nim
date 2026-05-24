@@ -1,8 +1,10 @@
 import types, strutils, utils
 
-proc newKeyBoardButton*(text: string, requestChat: KeyboardButtonRequestChat = nil, requestContact = false, requestLocation = false, requestPoll: KeyboardButtonPollType = nil, webApp: WebAppInfo = nil): KeyboardButton =
+proc newKeyBoardButton*(text: string, iconCustomEmojiId = "", style = "", requestChat: KeyboardButtonRequestChat = nil, requestContact = false, requestLocation = false, requestPoll: KeyboardButtonPollType = nil, webApp: WebAppInfo = nil): KeyboardButton =
   new(result)
   result.text = text
+  if iconCustomEmojiId.len != 0: result.iconCustomEmojiId = iconCustomEmojiId
+  if style.len != 0: result.style = style
   if requestChat != nil: result.requestChat = requestChat
   if requestContact: result.requestContact = true
   if requestLocation: result.requestLocation = true
