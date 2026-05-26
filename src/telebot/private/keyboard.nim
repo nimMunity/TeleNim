@@ -13,7 +13,7 @@ proc newKeyBoardButton*(
   
   new(result)
   result.text = text
-  if iconCustomEmojiId != 0: result.iconCustomEmojiId = iconCustomEmojiId
+  if iconCustomEmojiId.len != 0: result.iconCustomEmojiId = iconCustomEmojiId
   if style.len != 0: result.style = style
   if requestChat != nil: result.requestChat = requestChat
   if requestContact: result.requestContact = true
