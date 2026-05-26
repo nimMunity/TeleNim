@@ -427,7 +427,7 @@ type
 
   KeyboardButton* = ref object of TelegramObject
     text*: string
-    icon_custom_emoji_id*: string
+    iconCustomEmojiId*: string
     style*: string
     requestManagedBot*: KeyboardButtonRequestManagedBot
     requestUsers*: KeyboardButtonRequestUsers
