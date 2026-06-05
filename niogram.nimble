@@ -1,3 +1,4 @@
+name          = "niogram"
 version       = "8.3.0"
 author        = "NimMunity"
 description   = "Async Telegram Bot Library"
