@@ -5,4 +5,4 @@ license       = "Apache 2.0"
 skipDirs      = @["examples", "tests"]
 srcDir        = "src"
 
-requires        "nim >= 2.2.10"
+requires        "nim >= 2.2.0"
