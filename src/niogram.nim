@@ -1,4 +1,4 @@
-## Telebot is a Nim library for creating Telegram Bot applications.
+## Niogram is a Nim library for creating Telegram Bot applications.
 ##
 ## This module provides the main interface for creating and managing Telegram bots.
 ## It implements the Telegram Bot API and provides a simple, intuitive way
@@ -10,7 +10,7 @@
 ## .. code-block:: nim
 ##   import telebot
 ##
-##   let bot = newTeleBot("YOUR_BOT_TOKEN")
+##   let bot = newBot("YOUR_BOT_TOKEN")
 ##
 ##   bot.onCommand("start") do (cmd: Command):
 ##     try:
@@ -21,7 +21,7 @@
 ##
 ##   bot.poll()
 ##
-## The library supports all major Telegram Bot API features including:
+## The library supports all Telegram Bot API features including:
 ## * Command handling
 ## * Message updates
 ## * Inline keyboards
@@ -30,7 +30,7 @@
 ##
 import tables, httpclient
 
-import telebot/private/[types, keyboard, webhook, inputmedia, helpers, api, events]
+import niogram/private/[types, keyboard, webhook, inputmedia, helpers, api, events]
 export types, webhook, keyboard, inputmedia, helpers, api, events
 
 proc setProxy*(b: TeleBot, url: string, auth = "") {.inline.} =
@@ -54,7 +54,7 @@ proc setProxy*(b: TeleBot, url: string, auth = "") {.inline.} =
   ## ```
   b.proxy = newProxy(url, auth)
 
-proc newTeleBot*(token: string, serverUrl="https://api.telegram.org"): TeleBot =
+proc newBot*(token: string, serverUrl="https://api.telegram.org"): TeleBot =
   ## Creates a new Telegram Bot instance.
   ##
   ## This is the main constructor for creating a new bot instance. It initializes
@@ -66,7 +66,7 @@ proc newTeleBot*(token: string, serverUrl="https://api.telegram.org"): TeleBot =
   ##   for most use cases. Only change this if you're using a custom Telegram API server.
   ##
   ## Returns:
-  ## * A new `TeleBot` instance configured with the provided parameters
+  ## * A new `Niogram` instance configured with the provided parameters
   ##
   ## Example:
   ## ```nim
