@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import tables, asyncdispatch, strutils
 from types import TeleBot, UpdateCallback, CommandCallback, CatchallCommandCallback, InlineQueryCallback, Update, Command
+=======
+import tables, std/[asyncdispatch, strutils]
+from types import TeleBot, UpdateCallback, Update, CommandCallback, Command, CatchallCommandCallback, InlineQueryCallback
+>>>>>>> experimental
 
 proc onUpdate*(b: TeleBot, cb: UpdateCallback) =
   ## Registers a callback to handle general updates.
